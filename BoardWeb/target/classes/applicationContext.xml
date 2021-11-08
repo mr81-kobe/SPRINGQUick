@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<!-- <bean id="TV" class="polymorphism.SamsungTV"></bean>  -->
+	<!-- <bean id="TV" class="polymorphism.LgTV"></bean> -->
+		<!-- name 값이여도 똑같이 lookup 할때는 getbean으로 불러 올 수 있음-->
+		<!-- <bean name="TV" class="polymorphism.LgTV"></bean> --> 
+		<!-- <bean id="TV" class="polymorphism.SamsungTV" init-method="initMethod" destroy-method="destroyMethod"></bean> -->
+		
+	<!-- 	<bean id="TV" class="polymorphism.SamsungTV" lazy-init="true" scope="singleton">
+		
+		<constructor-arg ref="Apple" index="0"></constructor-arg>
+		<constructor-arg value="120000" index="1"></constructor-arg>
+		</bean>  --> 
+		<!-- <bean id="TV"  class="polymorphism.SamsungTV">
+		
+		<property name="speaker" ref="Apple"></property> 
+		<property name="price" value="1200000"></property>
+		</bean> -->
+		
+		<!-- <bean id="TV" class="polymorphism.SamsungTV" p:speaker-ref="Apple" p:price="2500000"></bean>
+		<bean id="Apple" class="polymorphism.AppleSpeaker"></bean>
+
+		<bean id="Sony" class="polymorphism.SonySpeaker"></bean> 
+		<bean id="collectionBean" class="polymorphism.CollectionBean">
+		
+		<property name="addressList">
+		<list>
+		<value>서울시 강남구 역삼동</value>
+		<value>서울시 성동구 행당동</value>
+		</list>
+		</property>
+		</bean>  -->
+		
+		
+		<context:component-scan base-package="polymorphism"></context:component-scan> 
+		
+		<bean id="apple" class="polymorphism.AppleSpeaker"></bean>
+</beans>
