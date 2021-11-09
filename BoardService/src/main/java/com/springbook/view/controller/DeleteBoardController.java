@@ -1,31 +1,29 @@
-package com.springbook.view.controller;
+/*package com.springbook.view.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
-
-public class DeleteBoardController implements Controller {
+@Controller
+public class DeleteBoardController {
 
 	public DeleteBoardController() {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("/deleteBoard.do")
+	public ModelAndView deleteBoard( ModelAndView mav ,BoardVO vo , BoardDAO dao) {
 		// TODO Auto-generated method stub
-		int seq = Integer.parseInt(request.getParameter("seq"));
-		
-		
-		BoardVO vo = new BoardVO();
-		vo.setSeq(seq); 
-		
-		BoardDAO dao = new BoardDAO();  
+		 
 		dao.deleteBoard(vo);
+	
+		mav.setViewName("redirect:getBoardList.do");
 		
 		
-		return "getBoardList.do";
+		return mav;
 	}
 
 }
+*/

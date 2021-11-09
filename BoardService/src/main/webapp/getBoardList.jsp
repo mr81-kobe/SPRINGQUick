@@ -123,7 +123,7 @@ List<BoardVO> boardList = boardDAO.getBoardList(vo);
 <center>
 <h1> 글목록</h1>
 
-<h3>테스트님 환영합니다...<a href="logout.do"> Log-out</a></h3>
+<h3>${userName } 환영합니다...<a href="logout.do"> Log-out</a></h3>
 
 
 
@@ -166,10 +166,10 @@ List<BoardVO> boardList = boardDAO.getBoardList(vo);
 
 
 </tr>
-<c:forEach items="${ boardList}" var="board">
+<c:forEach items="${boardList}" var="board">
 <tr>
 <td>${board.seq } </td> 
-<td align="left"><a href="getBoard.do?seq=${board.seq }">${board.title }</a></td>
+<td align="left"><a href="getBoard.do?seq=${board.seq}">${board.title}</a></td>
 <td>${board.writer }</td>
 <td>${board.regDate }</td>
 <td>${board.cnt }</td>

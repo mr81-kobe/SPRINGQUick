@@ -1,4 +1,4 @@
-package com.springbook.view.controller;
+/*package com.springbook.view.controller;
 
 import java.util.List;
 
@@ -6,36 +6,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
-
-public class GetBoardListController implements Controller{
+@Controller
+public class GetBoardListController {
 
 	public GetBoardListController() {
 		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("/getBoardList.do")
+	public ModelAndView getBoardList(BoardVO vo , BoardDAO dao ,ModelAndView mnv) {
 		// TODO Auto-generated method stub 
-	System.out.println("글 목록 검색 처리	");
+	System.out.println("getBoardList.do");
 	
-	BoardVO vo = new BoardVO(); 
 	
-	BoardDAO dao = new BoardDAO(); 
+	
+	
 	List<BoardVO> boardList = dao.getBoardList(vo); 
 	
-	HttpSession session = request.getSession(); 
 	
-	session.setAttribute("boardList", boardList);
-	return "getBoardList";
+	
+	mnv.addObject("boardList",boardList); 
+	mnv.setViewName("getBoardList.jsp");
+	return mnv;	
 		
 		
-		
-		
-		
-		
-		
-	}
+		}
 
 }
+*/

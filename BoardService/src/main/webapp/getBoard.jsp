@@ -29,7 +29,7 @@ BoardVO board=(BoardVO)session.getAttribute("board");
 <tr>
 	<td bgcolor="orange" width="70">제목</td>
 	<td align="left"><input type="text" name="title" value="${board.title }"></td> 
-	
+	ㅁㅁㅁ
 
 </tr>
 <tr>
@@ -37,6 +37,7 @@ BoardVO board=(BoardVO)session.getAttribute("board");
 	<td bgcolor="orange">작성자</td>
 
 	<td align="left">${board.writer }</td>
+	
 
 </tr>
 <tr>

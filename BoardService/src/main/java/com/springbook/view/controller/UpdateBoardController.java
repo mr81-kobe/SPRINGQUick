@@ -1,28 +1,29 @@
-package com.springbook.view.controller;
+/*package com.springbook.view.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.springbook.biz.board.BoardVO;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-public class UpdateBoardController implements Controller{
+import com.springbook.biz.board.BoardVO;
+import com.springbook.biz.board.impl.BoardDAO;
+@Controller
+public class UpdateBoardController {
 
 	public UpdateBoardController() {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("/updateBoard.do")
+	public ModelAndView UpdateBoard(ModelAndView mav , BoardVO vo , BoardDAO dao) {
 		// TODO Auto-generated method stub 
 		
-		BoardVO vo = new BoardVO(); 
-		String title = request.getParameter("title"); 
-		String content = request.getParameter("content");
-		vo.setTitle(title);
-		vo.setContent(content);
-		
-		
-		return "getBoardList.do";
+		dao.updateBoard(vo);
+		mav.setViewName("redirect:getBoard.do?seq="+vo.getSeq());
+		return mav;
 	}
 
 }
+*/

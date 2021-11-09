@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%> 
   
    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>±Û ¾²±â</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ê¸€ ì“°ê¸°</title>
 </head>
 <body>
 <center>
 
-<h1>±Û µî·Ï</h1>
+<h1>ê¸€ ë“±ë¡</h1>
 <a href="logout_proc.jsp">Log-Out</a>
 <hr>
 
@@ -20,22 +20,22 @@
 <table border="1" cellpadding="0" cellspacing="0">
 
 <tr>
-	<td bgcolor="orange" width="70">Á¦¸ñ </td>
+	<td bgcolor="orange" width="70">ì œëª© </td>
 	<td align="left"><input type="text" name="title"></td>
 </tr> 
 <tr>
-	<td bgcolor="orange">ÀÛ¼ºÀÚ</td>
+	<td bgcolor="orange">ìž‘ì„±ìž</td>
 	<td align="left"><input type="text" name="writer"></td>
 </tr> 
 
 <tr>
-	<td bgcolor="orange">³»¿ë</td>
+	<td bgcolor="orange">ë‚´ìš©</td>
 	<td align="left"><textarea name="content" cols="40" rows="10"></textarea></td>
 
 </tr> 
 <tr>
 
-	<td colspan="2" align="left"> <input type="submit" value="Á¦Ãâ">
+	<td colspan="2" align="left"> <input type="submit" value="ì œì¶œ">
 	</td>
 
 
@@ -46,7 +46,7 @@
 
 </form>
 <hr>
-<a href="getBoardList.jsp">±Û ¸ñ·Ï °¡±â</a> 
+<a href="getBoardList.do">ê¸€ ëª©ë¡ ê°€ê¸°</a> 
 
 </center>
 </body>
