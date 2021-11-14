@@ -3,6 +3,7 @@ package com.springbook.biz;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
+import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.user.UserService;
 import com.springbook.biz.user.UserVO;
 
@@ -18,10 +19,17 @@ public class UserClient {
 		service.getUser(vo);
 		UserVO user = service.getUser(vo); 
 		if(user!=null){
-			System.out.println(user.getId()+"´Ô È¯¿µÇÕ´Ï´Ù.");
+			System.out.println(user.getId()+"ï¿½ï¿½ È¯ï¿½ï¿½ï¿½Õ´Ï´ï¿½.");
 		}else{
-			System.out.println("·Î±×ÀÎ ½ÇÆÐ");
+			System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
+	
+	
+	
+	BoardVO board = new BoardVO();  
+	
+	
+	
 	}
 
 }

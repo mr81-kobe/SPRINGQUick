@@ -60,10 +60,7 @@
 	<tx:advice id="txAdvice" transaction-manager="txManager"></tx:advice> 
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	<property name="maxUploadSize" value="100000"></property>
 	
-	</bean>
 </beans>
 
 

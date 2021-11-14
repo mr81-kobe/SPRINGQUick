@@ -25,22 +25,23 @@ public class BoardDAO extends JdbcDaoSupport{
 	private Connection conn;
 	private PreparedStatement stmt;
 	private ResultSet rs ; 
-	//±×´Ï±î bean ¿¡ µî·ÏµÈ datasource°¡ ÀÌ¸®°í ¿ÀÅä¿ÍÀÌ¾îµå µÈ´Ù´Â ¸»ÀÌÁö
+	//ï¿½×´Ï±ï¿½ bean ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ datasourceï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½È´Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Autowired
 	public void setSuperDataSource(DataSource dataSource){
 		super.setDataSource(dataSource);
 	}
 	
 	private final String BOARD_INSERT= "insert into board(seq,title,writer,content) values((select nvl(max(seq),0)+1 from board) ,?,?,?)";
-	private final String BOARD_UPDATE ="update board set title=? , content =?, where seq=?"; 
+	private final String BOARD_UPDATE ="update board set title=? , content =? where seq=?"; 
 	private final String BOARD_DELETE ="delete board where seq=?";
 	private final String BOARD_GET ="select * from board where seq=?";
-	private final String bOARD_lIST="select * from board order by seq desc"; 
-	
+	private final String bOARD_lIST_T="select * from board WHERE TITLE LIKE '%'||?||'%' order by seq desc"; 
+	private final String bOARD_lIST_S="select * from board  order by seq desc"; 
+	private final String bOARD_lIST_C="select * from board WHERE CONTENT LIKE '%'||?||'%' order by seq desc"; 
 	
 	public void insertBoard(BoardVO vo){
 		
-		System.out.println("jdbc·Î insertBoardÃ³¸®");
+		System.out.println("jdbcë¡œ insertBoardÃ³ê¸°ëŠ¥ ì‹¤í–‰ì¤‘");
 		 
 		try{
 			conn=JDBCUtill.getConnection(); 
@@ -62,13 +63,14 @@ public class BoardDAO extends JdbcDaoSupport{
 	}
 	
 	public void updateBoard(BoardVO vo){
-		System.out.println("jdbc·Î UpdateBoard ±â´É ½ÇÇà");
+	
 		
 		try{
 			conn=JDBCUtill.getConnection(); 
 			stmt=conn.prepareStatement(BOARD_UPDATE); 
 			stmt.setString(1, vo.getTitle());
-			stmt.setString(2, vo.getContent());
+			stmt.setString(2, vo.getContent()); 
+			stmt.setInt(3, vo.getSeq());
 			stmt.executeUpdate();
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -79,8 +81,7 @@ public class BoardDAO extends JdbcDaoSupport{
 	}
 	public BoardVO getBoaard(BoardVO vo){
 		
-		System.out.println("º¸µå Ã£±â ±â´É ½ÇÇàÁß");
-		
+				
 		
 		BoardVO board = new BoardVO(); 
 		
@@ -94,7 +95,8 @@ public class BoardDAO extends JdbcDaoSupport{
 				board.setCnt(rs.getInt("cnt"));
 				board.setRegDate(rs.getDate("regDate"));
 				board.setContent(rs.getString("content"));
-				board.setWriter(rs.getString("writer"));
+				board.setWriter(rs.getString("writer")); 
+				board.setSeq(rs.getInt("seq"));
 			}
 		
 		
@@ -110,7 +112,7 @@ public class BoardDAO extends JdbcDaoSupport{
 	}
 	public void deleteBoard(BoardVO vo){
 		
-		System.out.println("µô¸®Æ® ±â´É ½ÇÇàÁß");
+		
 		try{
 			conn=JDBCUtill.getConnection(); 
 			stmt=conn.prepareStatement(BOARD_DELETE); 
@@ -125,11 +127,24 @@ public class BoardDAO extends JdbcDaoSupport{
 	}
 	public List<BoardVO> getBoardList(BoardVO vo ){
 		
-		System.out.println("º¸µå ¸®½ºÆ® ±¸ÇØ¿À±â ÇÔ¼ö ½ÇÇàÁß");
+		System.out.println("jdbcë¡œ ë¦¬ìŠ¤íŠ¸ ê°€ì ¸ì˜¤ê¸° ì‹¤í–‰ ì¤‘");
+		
+		
+		
+		
 		List<BoardVO> list = new ArrayList<>();
 		try{
 			conn=JDBCUtill.getConnection();
-			stmt=conn.prepareStatement(bOARD_lIST);
+			if(vo.getSearchCondition().equals("TITLE")){
+				stmt=conn.prepareStatement(bOARD_lIST_T); 
+				stmt.setString(1, vo.getSearchKeyword());
+				System.out.println("íƒ€ì´í‹€");
+			}else if(vo.getSearchCondition().equals("CONTENT")){
+				stmt=conn.prepareStatement(bOARD_lIST_C) ;
+				stmt.setString(1, vo.getSearchKeyword()); 
+				
+				System.out.println("ì½˜í…íŠ¸");
+			}
 			
 			rs=stmt.executeQuery();
 			while(rs.next()){
@@ -138,7 +153,8 @@ public class BoardDAO extends JdbcDaoSupport{
 			board.setCnt(rs.getInt("cnt"));
 			board.setRegDate(rs.getDate("regDate"));
 			board.setContent(rs.getString("content"));
-			board.setWriter(rs.getString("writer")); 
+			board.setWriter(rs.getString("writer"));  
+			board.setSeq(rs.getInt("seq"));
 			list.add(board);
 			}
 		}catch (Exception e) {
@@ -153,6 +169,9 @@ public class BoardDAO extends JdbcDaoSupport{
 	}
 	
 	
+	
+	
+
 	
 			}
 
@@ -178,7 +197,7 @@ public class BoardDAO extends JdbcDaoSupport{
 		// TODO Auto-generated constructor stub
 	}
 
-	//±×´Ï±î bean ¿¡ µî·ÏµÈ datasource°¡ ÀÌ¸®°í ¿ÀÅä¿ÍÀÌ¾îµå µÈ´Ù´Â ¸»ÀÌÁö
+	//ï¿½×´Ï±ï¿½ bean ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ datasourceï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½È´Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Autowired
 	public void setSuperDatasource (DataSource dataSource){
 		super.setDataSource(dataSource);
@@ -193,30 +212,30 @@ public class BoardDAO extends JdbcDaoSupport{
 	
 	public void insertBoard(BoardVO vo){
 		
-		System.out.println("jdbc·Î insertBoardÃ³¸®");
+		System.out.println("jdbcï¿½ï¿½ insertBoardÃ³ï¿½ï¿½");
 		 
 		getJdbcTemplate().update(BOARD_INSERT,vo.getTitle(),vo.getWriter(),vo.getContent());
 		
 	}
 	
 	public void updateBoard(BoardVO vo){
-		System.out.println("jdbc·Î UpdateBoard ±â´É ½ÇÇà");
+		System.out.println("jdbcï¿½ï¿½ UpdateBoard ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		getJdbcTemplate().update(BOARD_UPDATE,vo.getTitle(),vo.getContent(),vo.getCnt());
 		
 	}
 	public BoardVO getBoaard(BoardVO vo){
 		
-		System.out.println("º¸µå Ã£±â ±â´É ½ÇÇàÁß");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		Object[] args= {vo.getSeq()};
 		return getJdbcTemplate().queryForObject(BOARD_GET, args, new BoardRowMapper());
 	
 	}
 	public void deleteBoard(BoardVO vo){
 		
-		System.out.println("º¸µå Áö¿ì±â ±â´É ½ÇÇàÁß");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	}
 	public List<BoardVO> getBoardList(BoardVO vo ){
-		System.out.println("º¸µå ¸®½ºÆ® Ã£±â ±â´É ½ÇÇàÁß"); 
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"); 
 		return getJdbcTemplate().query(bOARD_lIST, new BoardRowMapper());
 	}
 	
@@ -267,7 +286,7 @@ public class BoardDAO {
 		// TODO Auto-generated constructor stub
 	}
 
-	//±×´Ï±î bean ¿¡ µî·ÏµÈ datasource°¡ ÀÌ¸®°í ¿ÀÅä¿ÍÀÌ¾îµå µÈ´Ù´Â ¸»ÀÌÁö 
+	//ï¿½×´Ï±ï¿½ bean ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ datasourceï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½È´Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
@@ -280,30 +299,30 @@ public class BoardDAO {
 	
 	public void insertBoard(BoardVO vo){
 		
-		System.out.println("jdbc·Î insertBoardÃ³¸®");
+		System.out.println("jdbcï¿½ï¿½ insertBoardÃ³ï¿½ï¿½");
 		 
 		jdbcTemplate.update(BOARD_INSERT,vo.getTitle(),vo.getWriter(),vo.getContent());
 		
 	}
 	
 	public void updateBoard(BoardVO vo){
-		System.out.println("jdbc·Î UpdateBoard ±â´É ½ÇÇà");
+		System.out.println("jdbcï¿½ï¿½ UpdateBoard ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		jdbcTemplate.update(BOARD_UPDATE,vo.getTitle(),vo.getContent(),vo.getCnt());
 		
 	}
 	public BoardVO getBoaard(BoardVO vo){
 		
-		System.out.println("º¸µå Ã£±â ±â´É ½ÇÇàÁß");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		Object[] args= {vo.getSeq()};
 		return jdbcTemplate.queryForObject(BOARD_GET, args, new BoardRowMapper());
 	
 	}
 	public void deleteBoard(BoardVO vo){
 		
-		System.out.println("º¸µå Áö¿ì±â ±â´É ½ÇÇàÁß");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	}
 	public List<BoardVO> getBoardList(BoardVO vo ){
-		System.out.println("º¸µå ¸®½ºÆ® Ã£±â ±â´É ½ÇÇàÁß"); 
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"); 
 		return jdbcTemplate.query(bOARD_lIST, new BoardRowMapper());
 	}
 	

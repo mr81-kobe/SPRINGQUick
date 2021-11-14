@@ -4,18 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Main Page</title>
+<title>Insert title here</title>
 </head>
 <body>
-<center>
-	<h1>게시판 프로그램</h1>
-	<hr>
-		<a href="login.do">로그인</a><br><br><br>
-		<a href="getBoardList.do">글 목록 바로가기</a><br><br><br>
-		<a href="test.do">뭔가 이상해</a>
-		<a href="dataTramsform.do">글 목록 변환 처리</a>
-		
-	<hr>
-</center>
+
+<table width="100%" border="1" cellspacing="0" cellpadding="0">
+	<tr>
+	<td align="center">
+	<br><br><br><br><br>
+	Message:${exception.message }
+	<br><br><br><br><br>
+	</td>
+	</tr>
+
+</table>
+
+
 </body>
 </html>
