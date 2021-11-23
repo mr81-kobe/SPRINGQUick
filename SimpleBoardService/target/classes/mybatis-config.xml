@@ -6,9 +6,11 @@
 	
 	<typeAliases>
 		<typeAlias type="com.toy.biz.user.UserVO" alias="user"></typeAlias>
+		<typeAlias type="com.toy.biz.board.BoardVO" alias="board"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappings/user-mappings.xml" />
+		<mapper resource="mappings/board-Mapper.xml"/>
 	</mappers>
 </configuration>

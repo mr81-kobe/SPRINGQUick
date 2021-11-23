@@ -18,7 +18,15 @@ public class UserDAO {
 	
 	public void insertUser(UserVO vo){
 		
-		mybatis.insert("UserDAO.insertUser",vo);
+		System.out.println(mybatis.insert("UserDAO.insertUser",vo));
+		
+		
+	}
+	
+	public UserVO selectUser(UserVO vo){
+		
+		
+		return mybatis.selectOne("UserDAO.selectUser",vo); 
 		
 		
 	}

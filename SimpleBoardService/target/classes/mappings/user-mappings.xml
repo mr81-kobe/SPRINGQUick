@@ -11,5 +11,9 @@
 		VALUES(#{email},#{name},user_seq.nextval,#{password},#{address})
 	</insert>
 	
-
+	<select id="selectUser" parameterType="user" resultType="user">
+	
+	select * from userTBL where email = #{email} and password = #{password}
+	
+	</select>
 </mapper>

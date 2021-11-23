@@ -1,142 +1,146 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE >
+<html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>Clean Blog - Start Bootstrap Theme</title>
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-<!-- Font Awesome icons (free version)-->
-<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
-	crossorigin="anonymous"></script>
-<!-- Google fonts-->
-<link
-	href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
-	rel="stylesheet" type="text/css" />
-<!-- Core theme CSS (includes Bootstrap)-->
-<link href="${pageContext.request.contextPath}/resources/css/styles.css"
-	rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<title>Section</title>
 </head>
 <body>
-	<!-- Navigation-->
-	<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-		<div class="container px-4 px-lg-5">
-			<a class="navbar-brand" href="index.html">Simple Board</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
-				aria-controls="navbarResponsive" aria-expanded="false"
-				aria-label="Toggle navigation">
-				Menu <i class="fas fa-bars"></i>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ms-auto py-4 py-lg-0">
-					<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
-						href="index.jsp">Home</a></li>
-					<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
-						href="about.html">About</a></li>
-					<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
-						href="post.html">BoardList</a></li>
-					<li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4"
-						href="contact.html">Contact</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<!-- Page Header-->
-	<header class="masthead"
-		style="background-image: url('${pageContext.request.contextPath}/resources/assets/img/home-bg.jpg')">
-		<div class="container position-relative px-4 px-lg-5">
-			<div class="row gx-4 gx-lg-5 justify-content-center">
-				<div class="col-md-10 col-lg-8 col-xl-7">
-					<div class="site-heading">
-						<h1>Simple Board</h1>
-						<span class="subheading">간단한 게시판 토이 프로젝트</span>
+	<header>
+		<div class="row-fluid">
+
+			<div align="left">
+
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header" style="display: flex">
+
+
+							<div class="page-header">
+								<a href="Section.jsp"><h1>
+										Simple Board <small>Toy Project</small>
+									</h1></a>
+							</div>
+
+							<div
+								style="position: absolute; top: 0px; right: 0px; float: right">
+								<div>
+									<button type="button" class="btn btn-default navbar-btn"
+										onclick="location.href='singin.jsp'">Sign-in</button>
+									<button type="button" class="btn btn-default navbar-btn"
+										onclick="location.href='login.jsp'">Log-in</button>
+								</div>
+								<div class="login_box" id="id" style="display: none;">빙빙
+									돌아가는 회전 목마 처럼</div>
+								<ul class="nav nav-tabs">
+									<li role="presentation" class="active"><a href="#">Home</a></li>
+									<li role="presentation"><a href="#">BoardList</a></li>
+									<li role="presentation"><a href="#">Info</a></li>
+									<li role="presentation"><a href="#">Profile</a></li>
+								</ul>
+
+							</div>
+
+
+
+						</div>
 					</div>
-				</div>
+				</nav>
 			</div>
+
+
+
 		</div>
 	</header>
-	<!-- Main Content-->
-	<div class="container">
-		<form method="post" action="signin.do">
-			<div class="mb-3">
-				<label for="exampleFormControlInput1" class="form-label">Email
-					address</label> <input type="email" class="form-control"
-					id="id" placeholder="name@example.com" name="email">
-			</div>
-			<div class="mb-3">
-				<label for="exampleFormControlInput2" class="form-label">Password</label>
-				<input type="password" class="form-control"
-					id="password" name="password">
-			</div>
-			<div class="mb-3">
-				<label for="exampleFormControlInput3" class="form-label">Password-check</label>
-				<input type="password" class="form-control"
-					id="password2" >
-			</div>
-			<input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
-			<div class="mb-3">
-				<label for="exampleFormControlInput4" class="form-label">Address</label>
-				<input type="text" class="form-control"
-					id="address" name="address">
-			</div>
-			<input class="form-control" type="text" value="Readonly input here..." aria-label="readonly input example" readonly>
-			<div class="mb-3">
-				<label for="exampleFormControlInput5" class="form-label">Name</label>
-				<input type="text" class="form-control"
-					id="name" name="name" >
-			</div>
-			<div class="mb-3">
-			<input type="submit" value="submit">
-			</div>
-		
-		</form>
+	<div class="container" align="center">
+		<div class="imgbox"
+			style="height: 400px; background-image: url('https://media.istockphoto.com/photos/old-school-chalkboard-picture-id547016978?b=1&amp;k=20&amp;m=547016978&amp;s=170667a&amp;w=0&amp;h=CFpK3c30n2dD059xLC0PxngaX1wMn2Aa5erw9M0ub3s=')">
+			<h1
+				style="color: white; position: absolute; left: 50%; top: 50%; margin: auto;">Simple
+				Board</h1>
 
-	</div>
-	<!-- Footer-->
-	<footer class="border-top">
-		<div class="container px-4 px-lg-5">
-			<div class="row gx-4 gx-lg-5 justify-content-center">
-				<div class="col-md-10 col-lg-8 col-xl-7">
-					<ul class="list-inline text-center">
-						<li class="list-inline-item"><a href="#!"> <span
-								class="fa-stack fa-lg"> <i
-									class="fas fa-circle fa-stack-2x"></i> <i
-									class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-							</span>
-						</a></li>
-						<li class="list-inline-item"><a href="#!"> <span
-								class="fa-stack fa-lg"> <i
-									class="fas fa-circle fa-stack-2x"></i> <i
-									class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-							</span>
-						</a></li>
-						<li class="list-inline-item"><a href="#!"> <span
-								class="fa-stack fa-lg"> <i
-									class="fas fa-circle fa-stack-2x"></i> <i
-									class="fab fa-github fa-stack-1x fa-inverse"></i>
-							</span>
-						</a></li>
-					</ul>
-					<div class="small text-center text-muted fst-italic">Copyright
-						&copy; Your Website 2021</div>
-				</div>
-			</div>
+			<hr>
 		</div>
-	</footer>
-	<!-- Bootstrap core JS-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- Core theme JS-->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/scripts.js"></script>
+
+
+		<section style="width: 65%">
+			<!-- 본문 -->
+			<!-- <table border="4" style="background-color: gray; border-color: black">
+			<thead><tr align="center"> <td colspan="2"><h3>회원가입</h3></td></tr> </thead>
+				<tr><td>아이디(이메일):</td><td><input type="email" name="email" placeholder="hgj0307@hanmail.net" required="required" ></td></tr>
+				<tr><td>비밀번호:</td><td><input type="password" name="password" required="required"   id="password"></td></tr>
+				<tr><td>비밀번호 확인:</td><td><input type="password"  id="password2" name="name" required="required" ></td><td><div id="pwd_check"></div></td></tr>
+				
+				<tr><td>이름 :</td><td><input type="text"  id="name" name="name" required="required" ></td></tr>
+				<tr><td>주소:</td><td><input type="text"  id="address" required="required" name="address" ></td></tr>
+			</table> --> 
+			
+			<h1>회원가입</h1>
+			<form method="post" action="/signin.do">
+				<div align="left" class="form_box">
+					<div class="form-group">
+						<label for="InputName">성명</label> <input type="text"
+							class="form-control" id="name" name="name" placeholder="ex)황규준">
+					</div>
+					<div class="form-group">
+						<label for="InputEmail">이메일 주소</label> <input type="email"
+							class="form-control" id="email" name="email"
+							placeholder="ehdrmf0307@naver.com">
+					</div>
+
+
+					<div class="form-group">
+						<label for="InputPassword">비밀번호</label> <input type="password"
+							class="form-control" id="password" name="password">
+					</div>
+					<div class="form-group" style="">
+						<label for="InputPassword2">비밀번호 확인</label> <input type="password"
+							class="form-control" id="password2">
+						<div id="pwd">이히히</div>
+
+					</div>
+					<div class="form-group">
+						<label for="InputAddress">주소</label> <input type="text"
+							class="form-control" id="address" name="address">
+					</div>
+
+					<div class="form-group">
+
+						<input type="submit" class="btn btn-primary" id="btn_final"
+							value="회원가입">
+					</div>
+
+
+				</div>
+			</form>
+		</section>
+
+
+		<footer>
+			<div class="jumbotron" align="center">
+				<h3>Footer</h3>
+				<p>
+					You only live once<br> <br> Follow your heart<br> <br>
+					Past in jsust past<br> <br> Love your self
+				</p>
+			</div>
+			<hr>
+		</footer>
+	</div>
+<script src="${pageContext.request.contextPath}/resources/js/signin.js"></script>
 </body>
 </html>
-

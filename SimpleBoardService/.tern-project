@@ -10,7 +10,13 @@
     "ckeditor4.4.x": {
       
     },
+    "browser-extension": {
+      
+    },
     "bootstrap": {
+      
+    },
+    "jquery-extension": {
       
     }
   },
